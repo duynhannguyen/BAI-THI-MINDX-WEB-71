@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { db } from "../db.js";
+import "dotenv/config";
 
 const login = async (req, res) => {
   const { username, password } = req.body;
@@ -22,8 +23,7 @@ const login = async (req, res) => {
     id: exitstingUser._id,
     username: exitstingUser.username,
   };
-  const SECRET_KEY = "MINDX_WEB71";
-  const token = jwt.sign(payload, SECRET_KEY, {
+  const token = jwt.sign(payload, process.env.SECRET_KEY, {
     expiresIn: 10000,
   });
   res.status(200).json({
