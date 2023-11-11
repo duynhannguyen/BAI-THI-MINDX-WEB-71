@@ -5,7 +5,7 @@ import TodoRow from "../TodoRow/TodoRow.js";
 const TodoList = () => {
   const { todoList = [] } = useTodo();
   const renderTodoList =
-    todoList && todoList.map((task) => <TodoRow {...task} />);
+    todoList && todoList.map((task) => <TodoRow key={task.id} {...task} />);
 
   return <div className="todo-list-container">{renderTodoList}</div>;
 };

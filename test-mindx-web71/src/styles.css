@@ -118,3 +118,9 @@ body,
 .languague-picker.selected {
   opacity: 1;
 }
+.not-finish-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
