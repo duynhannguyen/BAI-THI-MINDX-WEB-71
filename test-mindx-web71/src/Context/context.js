@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 export const TodoContext = createContext();
 
@@ -7,11 +7,6 @@ export const useTodo = () => {
 };
 
 export const TodoProvider = ({ children }) => {
-  // useEffect(() => {
-  //   const taskLeft = todoList.sort((task) => (task.isDone = false));
-  //   console.log(taskLeft);
-  //   setUndoneTask(taskLeft);
-  // }, []);
   const GetTaskTitle = JSON.parse(localStorage.getItem("Title"));
   const [todoList, setTodoList] = useState(GetTaskTitle || []);
   const [unDoneTask, setUndoneTask] = useState(todoList);
@@ -23,18 +18,16 @@ export const TodoProvider = ({ children }) => {
     localStorage.setItem("Title", StrSaveNewTask);
     setTodoList(newTaskList);
   };
-  const onShowUndoneTask = (e) => {
-    console.log(e.target.value);
-    setShowUndoneTask(!e.target.value);
-    console.log("task", showUndoneTask);
+  const onShowUndoneTask = () => {
     if (showUndoneTask) {
+      setTodoList(unDoneTask);
+      setShowUndoneTask(!showUndoneTask);
+    } else {
       const showOnlyUndoneTask = unDoneTask.filter(
         (task) => task.isDone === false
       );
-      console.log(showOnlyUndoneTask);
+      setShowUndoneTask(!showUndoneTask);
       setTodoList(showOnlyUndoneTask);
-    } else {
-      setTodoList(todoList);
     }
   };
   const value = {

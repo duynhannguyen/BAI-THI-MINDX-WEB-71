@@ -11,9 +11,9 @@ const Header = () => {
       <label htmlFor="checkUndoneTask" className="not-finish-task">
         <input
           id="checkUndoneTask"
-          value={showUndoneTask}
+          // value={showUndoneTask}
           type="checkbox"
-          onClick={(e) => onShowUndoneTask(e)}
+          onClick={() => onShowUndoneTask()}
         />
         Những việc chưa làm
       </label>
